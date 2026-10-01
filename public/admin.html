@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="4D-MCOM 测评管理后台 - 查看测评数据与统计">
+    <title>管理后台 · 4D-MCOM 四维动机建构取向测评</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-mark">4D</span>
+                <span class="logo-text">MCOM</span>
+            </a>
+            <nav class="site-nav">
+                <a href="/" class="nav-link">首页</a>
+                <a href="/survey" class="nav-link">开始测评</a>
+                <a href="/admin" class="nav-link active">管理后台</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="admin-main">
+        <!-- 登录区 -->
+        <section class="admin-login" id="loginSection">
+            <div class="container login-card-wrap">
+                <div class="login-card">
+                    <div class="login-icon" aria-hidden="true">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    </div>
+                    <h1 class="login-title">管理后台登录</h1>
+                    <p class="login-desc">请输入管理员密码以查看测评数据</p>
+                    <form class="login-form" id="loginForm" novalidate>
+                        <div class="form-group">
+                            <label class="form-label" for="adminPassword">管理员密码</label>
+                            <input
+                                type="password"
+                                id="adminPassword"
+                                class="form-input"
+                                placeholder="请输入密码"
+                                autocomplete="current-password"
+                                required
+                            >
+                        </div>
+                        <div class="login-error" id="loginError" hidden>密码错误，请重试</div>
+                        <button type="submit" class="btn btn-primary btn-block btn-lg" id="loginBtn">
+                            登录
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- 后台内容 -->
+        <section class="admin-panel" id="adminPanel" hidden>
+            <div class="container">
+                <!-- 顶部工具栏 -->
+                <div class="admin-toolbar">
+                    <div class="admin-title-wrap">
+                        <h1 class="admin-title">测评数据管理</h1>
+                        <p class="admin-subtitle">查看、筛选与导出测评结果</p>
+                    </div>
+                    <div class="admin-toolbar-actions">
+                        <a href="#" class="btn btn-ghost" id="larkBaseLink" data-lark-url="" hidden target="_blank" rel="noopener">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            飞书多维表格
+                        </a>
+                        <button type="button" class="btn btn-primary" id="exportBtn" data-action="export">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            导出Excel
+                        </button>
+                        <button type="button" class="btn btn-ghost" id="logoutBtn">
+                            退出登录
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 统计摘要 -->
+                <div class="stats-grid" id="statsGrid">
+                    <div class="stat-card stat-card-primary">
+                        <div class="stat-card-head">
+                            <span class="stat-card-label">总测评数</span>
+                            <span class="stat-card-icon" aria-hidden="true">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                            </span>
+                        </div>
+                        <div class="stat-card-value" id="totalCount">0</div>
+                        <div class="stat-card-foot">份有效问卷</div>
+                    </div>
+                    <div class="stat-card stat-card-secondary">
+                        <div class="stat-card-head">
+                            <span class="stat-card-label">类型分布</span>
+                            <span class="stat-card-icon" aria-hidden="true">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                            </span>
+                        </div>
+                        <div class="stat-card-value" id="typeCount">0</div>
+                        <div class="stat-card-foot">种类型已采集</div>
+                    </div>
+                    <div class="stat-card stat-card-accent">
+                        <div class="stat-card-head">
+                            <span class="stat-card-label">最近提交</span>
+                            <span class="stat-card-icon" aria-hidden="true">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                            </span>
+                        </div>
+                        <div class="stat-card-value stat-card-value-sm" id="latestTime">--</div>
+                        <div class="stat-card-foot">最新一次测评</div>
+                    </div>
+                </div>
+
+                <!-- 类型分布 -->
+                <div class="type-distribution" id="typeDistribution">
+                    <h2 class="block-title">类型分布</h2>
+                    <div class="type-bars" id="typeBars">
+                        <!-- JS 渲染 16 种类型的分布条 -->
+                    </div>
+                </div>
+
+                <!-- 数据筛选 -->
+                <div class="data-filter">
+                    <div class="filter-left">
+                        <label class="form-label" for="typeFilter">按类型筛选</label>
+                        <select id="typeFilter" class="form-select" data-filter="type">
+                            <option value="">全部类型</option>
+                            <option value="OCDS">OCDS · 拓荒者 · 外向·因果·直接·自我</option>
+                            <option value="OCDR">OCDR · 守卫 · 外向·因果·直接·关系</option>
+                            <option value="OCMS">OCMS · 工程师 · 外向·因果·间接·自我</option>
+                            <option value="OCMR">OCMR · 规划师 · 外向·因果·间接·关系</option>
+                            <option value="OTDS">OTDS · 先锋 · 外向·目的·直接·自我</option>
+                            <option value="OTDR">OTDR · 外交官 · 外向·目的·直接·关系</option>
+                            <option value="OTMS">OTMS · 导演 · 外向·目的·间接·自我</option>
+                            <option value="OTMR">OTMR · 协调人 · 外向·目的·间接·关系</option>
+                            <option value="ICDS">ICDS · 修行者 · 内向·因果·直接·自我</option>
+                            <option value="ICDR">ICDR · 治疗师 · 内向·因果·直接·关系</option>
+                            <option value="ICMS">ICMS · 理论家 · 内向·因果·间接·自我</option>
+                            <option value="ICMR">ICMR · 分析师 · 内向·因果·间接·关系</option>
+                            <option value="ITDS">ITDS · 洞察者 · 内向·目的·直接·自我</option>
+                            <option value="ITDR">ITDR · 陪伴者 · 内向·目的·直接·关系</option>
+                            <option value="ITMS">ITMS · 评论家 · 内向·目的·间接·自我</option>
+                            <option value="ITMR">ITMR · 史官 · 内向·目的·间接·关系</option>
+                        </select>
+                    </div>
+                    <div class="filter-right">
+                        <span class="filter-count">共 <span id="filterCount">0</span> 条记录</span>
+                    </div>
+                </div>
+
+                <!-- 数据表格 -->
+                <div class="table-wrap">
+                    <table class="data-table" id="dataTable">
+                        <thead>
+                            <tr>
+                                <th class="col-index">序号</th>
+                                <th class="col-time">提交时间</th>
+                                <th class="col-nick">昵称</th>
+                                <th class="col-demo">年龄段</th>
+                                <th class="col-demo">性别</th>
+                                <th class="col-dim">探索方向</th>
+                                <th class="col-dim">预判框架</th>
+                                <th class="col-dim">操作方式</th>
+                                <th class="col-dim">参照框架</th>
+                                <th class="col-type">类型</th>
+                                <th class="col-action">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dataTableBody">
+                            <tr class="empty-row">
+                                <td colspan="11">
+                                    <div class="empty-state">
+                                        <div class="empty-icon" aria-hidden="true">
+                                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v18H3z"></path><path d="M3 9h18M9 21V9"></path></svg>
+                                        </div>
+                                        <p>暂无数据</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 详情弹窗 -->
+    <div class="modal" id="detailModal" hidden>
+        <div class="modal-backdrop" data-action="close-modal"></div>
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <h3 class="modal-title">测评详情</h3>
+                <button type="button" class="modal-close" data-action="close-modal" aria-label="关闭">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- JS 渲染详情内容 -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-ghost" data-action="close-modal">关闭</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast 提示 -->
+    <div class="toast" id="adminToast" role="status" aria-live="polite"></div>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>

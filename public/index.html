@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="4D-MCOM 四维动机建构取向测评 - 通过60道题精准测出你的人格类型">
+    <title>4D-MCOM 四维动机建构取向测评</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-mark">4D</span>
+                <span class="logo-text">MCOM</span>
+            </a>
+            <nav class="site-nav">
+                <a href="/" class="nav-link">首页</a>
+                <a href="/survey" class="nav-link">开始测评</a>
+                <a href="/admin" class="nav-link">管理后台</a>
+                <div class="user-menu" id="userMenu" hidden>
+                    <button type="button" class="user-chip" id="userChip">
+                        <span class="user-chip-avatar" aria-hidden="true">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                        </span>
+                        <span id="userChipName">昵称</span>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="user-dropdown" id="userDropdown" hidden>
+                        <a href="#" class="dropdown-item" id="navMyResult">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                            我的测评结果
+                        </a>
+                        <button type="button" class="dropdown-item" id="navLogout">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                            退出登录
+                        </button>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 主视觉区 -->
+    <section class="hero">
+        <div class="hero-bg" aria-hidden="true"></div>
+        <div class="container hero-inner">
+            <div class="hero-badge">人格测评 · 四维动机建构取向</div>
+            <h1 class="hero-title">4D-MCOM 四维动机<br>建构取向测评</h1>
+            <p class="hero-subtitle">通过 60 道精心设计的题目，从四个维度洞察你的动机建构取向，解锁属于你的 16 种人格类型之一。</p>
+            <div class="hero-actions">
+                <a href="/survey" class="btn btn-primary btn-lg" id="startSurveyBtn">
+                    <span id="startSurveyText">开始测评</span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+                <a href="#" class="btn btn-primary btn-lg" id="heroMyResult" hidden>
+                    <span>查看我的结果</span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                </a>
+                <a href="#dimensions" class="btn btn-ghost btn-lg">了解模型</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item"><span class="stat-num">60</span><span class="stat-label">道题目</span></div>
+                <div class="stat-divider"></div>
+                <div class="stat-item"><span class="stat-num">4</span><span class="stat-label">个维度</span></div>
+                <div class="stat-divider"></div>
+                <div class="stat-item"><span class="stat-num">16</span><span class="stat-label">种类型</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 模型简介 -->
+    <section class="model-intro">
+        <div class="container">
+            <div class="section-head">
+                <span class="section-eyebrow">关于模型</span>
+                <h2 class="section-title">什么是 4D-MCOM？</h2>
+            </div>
+            <p class="intro-text">
+                4D-MCOM（Four-Dimensional Motivation Construction Orientation Measure）是一个基于动机建构理论的人格测评工具。
+                它从 <strong>探索方向</strong>、<strong>预判框架</strong>、<strong>操作方式</strong>、<strong>参照框架</strong>
+                四个维度刻画个体在认知与行动中的稳定偏好，最终生成 16 种类型之一。
+                每种类型都配有专属画像、特质解析、优劣势分析与职业建议。
+            </p>
+        </div>
+    </section>
+
+    <!-- 四维度卡片 -->
+    <section class="dimensions" id="dimensions">
+        <div class="container">
+            <div class="section-head section-head-center">
+                <span class="section-eyebrow">核心维度</span>
+                <h2 class="section-title">四个维度，洞察真实的你</h2>
+                <p class="section-desc">每个维度由两极构成，组合出 16 种独特的人格类型。</p>
+            </div>
+            <div class="dimension-grid">
+                <article class="dimension-card" data-dimension="1">
+                    <div class="dim-icon dim-icon-1">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
+                    </div>
+                    <span class="dim-label">维度一</span>
+                    <h3 class="dim-name">探索方向</h3>
+                    <p class="dim-desc">你倾向于向外部世界寻求可能性，还是向内部世界沉淀意义？这决定你获取能量的方向。</p>
+                    <div class="dim-poles">
+                        <span>外向开拓</span>
+                        <span class="dim-vs">VS</span>
+                        <span>内向深耕</span>
+                    </div>
+                </article>
+                <article class="dimension-card" data-dimension="2">
+                    <div class="dim-icon dim-icon-2">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                    </div>
+                    <span class="dim-label">维度二</span>
+                    <h3 class="dim-name">预判框架</h3>
+                    <p class="dim-desc">面对未知，你更依赖直觉捕捉整体趋势，还是依靠逻辑拆解具体细节？这是你认识世界的方式。</p>
+                    <div class="dim-poles">
+                        <span>直觉构想</span>
+                        <span class="dim-vs">VS</span>
+                        <span>逻辑推演</span>
+                    </div>
+                </article>
+                <article class="dimension-card" data-dimension="3">
+                    <div class="dim-icon dim-icon-3">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+                    </div>
+                    <span class="dim-label">维度三</span>
+                    <h3 class="dim-name">操作方式</h3>
+                    <p class="dim-desc">在行动中，你是先感知情境再灵活适应，还是先制定计划再果断推进？这关乎你与世界互动的节奏。</p>
+                    <div class="dim-poles">
+                        <span>感知适应</span>
+                        <span class="dim-vs">VS</span>
+                        <span>判断推进</span>
+                    </div>
+                </article>
+                <article class="dimension-card" data-dimension="4">
+                    <div class="dim-icon dim-icon-4">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+                    </div>
+                    <span class="dim-label">维度四</span>
+                    <h3 class="dim-name">参照框架</h3>
+                    <p class="dim-desc">做判断时，你更看重客观原则与效率，还是更在意关系与情感共鸣？这是你价值取舍的坐标。</p>
+                    <div class="dim-poles">
+                        <span>原则效率</span>
+                        <span class="dim-vs">VS</span>
+                        <span>关系共情</span>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- 行动召唤 -->
+    <section class="cta">
+        <div class="container cta-inner">
+            <h2 class="cta-title">准备好认识自己了吗？</h2>
+            <p class="cta-desc">约 10 分钟，60 道题，开启一场关于动机与取向的探索之旅。</p>
+            <a href="/survey" class="btn btn-primary btn-lg" id="ctaStartBtn">立即开始</a>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div class="footer-brand">
+                <span class="logo-mark">4D</span>
+                <span class="logo-text">MCOM</span>
+            </div>
+            <p class="footer-desc">四维动机建构取向测评 · 探索你的认知偏好与人格类型</p>
+            <p class="footer-copy">© <span id="footerYear">2026</span> 4D-MCOM. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- 重新测评确认弹窗 -->
+    <div class="confirm-modal" id="retakeConfirm" hidden>
+        <div class="confirm-mask"></div>
+        <div class="confirm-dialog" role="dialog" aria-modal="true" aria-labelledby="homeRetakeTitle">
+            <h3 class="confirm-title" id="homeRetakeTitle">确认重新测评？</h3>
+            <p class="confirm-text">重新作答将<strong>覆盖你之前的测评记录</strong>，原结果将从统计数据中删除，此操作不可撤销。</p>
+            <div class="confirm-actions">
+                <button type="button" class="btn btn-ghost" id="retakeCancel">取消</button>
+                <button type="button" class="btn btn-primary" id="retakeConfirmBtn">确认重测</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/home.js"></script>
+</body>
+</html>

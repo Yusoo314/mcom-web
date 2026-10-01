@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="4D-MCOM 测评结果 - 你的专属人格类型报告">
+    <title>测评结果 · 4D-MCOM 四维动机建构取向测评</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-mark">4D</span>
+                <span class="logo-text">MCOM</span>
+            </a>
+            <nav class="site-nav">
+                <a href="/" class="nav-link">首页</a>
+                <a href="/survey" class="nav-link">重新测评</a>
+                <a href="/admin" class="nav-link">管理后台</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="result-main">
+        <!-- 结果加载态 -->
+        <div class="result-loading" id="resultLoading">
+            <div class="loading-spinner"></div>
+            <p>正在生成你的专属报告...</p>
+        </div>
+
+        <!-- 结果内容 -->
+        <div class="result-content" id="resultContent" hidden>
+            <!-- 类型头部 -->
+            <section class="result-hero">
+                <div class="result-hero-bg" aria-hidden="true"></div>
+                <div class="container result-hero-inner">
+                    <div class="result-type-image" id="resultTypeImage">
+                        <img id="typeImage" src="" alt="类型图像" class="type-image">
+                    </div>
+                    <div class="result-type-info">
+                        <span class="result-type-label">你的人格类型</span>
+                        <h1 class="result-type-code" id="typeCode">----</h1>
+                        <h2 class="result-type-name" id="typeName">类型名称</h2>
+                        <p class="result-type-tagline" id="typeTagline">类型一句话描述</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 维度得分 -->
+            <section class="result-section">
+                <div class="container">
+                    <div class="section-head section-head-center">
+                        <span class="section-eyebrow">维度得分</span>
+                        <h2 class="section-title">四维度倾向可视化</h2>
+                        <p class="section-desc">下方进度条展示你在每个维度上的两极倾向程度。</p>
+                    </div>
+                    <div class="score-bars" id="scoreBars">
+                        <div class="score-bar-item" data-dimension="1">
+                            <div class="score-bar-head">
+                                <span class="score-dim-name">探索方向</span>
+                                <span class="score-dim-result" id="dim1Result">--</span>
+                            </div>
+                            <div class="score-bar-track">
+                                <span class="score-pole-left">外向探索</span>
+                                <div class="score-bar-fill-wrap">
+                                    <div class="score-bar-fill" id="dim1Bar" style="left: 50%; width: 0%"></div>
+                                    <div class="score-bar-marker" id="dim1Marker" style="left: 50%"></div>
+                                </div>
+                                <span class="score-pole-right">内向探索</span>
+                            </div>
+                            <div class="score-bar-value">
+                                <span id="dim1Score">0</span> / 75
+                            </div>
+                        </div>
+                        <div class="score-bar-item" data-dimension="2">
+                            <div class="score-bar-head">
+                                <span class="score-dim-name">预判框架</span>
+                                <span class="score-dim-result" id="dim2Result">--</span>
+                            </div>
+                            <div class="score-bar-track">
+                                <span class="score-pole-left">因果推演</span>
+                                <div class="score-bar-fill-wrap">
+                                    <div class="score-bar-fill" id="dim2Bar" style="left: 50%; width: 0%"></div>
+                                    <div class="score-bar-marker" id="dim2Marker" style="left: 50%"></div>
+                                </div>
+                                <span class="score-pole-right">意图洞察</span>
+                            </div>
+                            <div class="score-bar-value">
+                                <span id="dim2Score">0</span> / 75
+                            </div>
+                        </div>
+                        <div class="score-bar-item" data-dimension="3">
+                            <div class="score-bar-head">
+                                <span class="score-dim-name">操作方式</span>
+                                <span class="score-dim-result" id="dim3Result">--</span>
+                            </div>
+                            <div class="score-bar-track">
+                                <span class="score-pole-left">直接操作</span>
+                                <div class="score-bar-fill-wrap">
+                                    <div class="score-bar-fill" id="dim3Bar" style="left: 50%; width: 0%"></div>
+                                    <div class="score-bar-marker" id="dim3Marker" style="left: 50%"></div>
+                                </div>
+                                <span class="score-pole-right">间接操作</span>
+                            </div>
+                            <div class="score-bar-value">
+                                <span id="dim3Score">0</span> / 75
+                            </div>
+                        </div>
+                        <div class="score-bar-item" data-dimension="4">
+                            <div class="score-bar-head">
+                                <span class="score-dim-name">参照框架</span>
+                                <span class="score-dim-result" id="dim4Result">--</span>
+                            </div>
+                            <div class="score-bar-track">
+                                <span class="score-pole-left">自我参照</span>
+                                <div class="score-bar-fill-wrap">
+                                    <div class="score-bar-fill" id="dim4Bar" style="left: 50%; width: 0%"></div>
+                                    <div class="score-bar-marker" id="dim4Marker" style="left: 50%"></div>
+                                </div>
+                                <span class="score-pole-right">关系参照</span>
+                            </div>
+                            <div class="score-bar-value">
+                                <span id="dim4Score">0</span> / 75
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 特质 -->
+            <section class="result-section result-section-alt">
+                <div class="container">
+                    <div class="section-head">
+                        <span class="section-eyebrow">行为特质</span>
+                        <h2 class="section-title">你的性格画像</h2>
+                    </div>
+                    <div class="traits-grid" id="traitsGrid">
+                        <!-- JS 渲染特质卡片 -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- 优点 -->
+            <section class="result-section">
+                <div class="container">
+                    <div class="section-head">
+                        <span class="section-eyebrow">你的优势</span>
+                        <h2 class="section-title">核心优势</h2>
+                    </div>
+                    <ul class="bullet-list bullet-list-advantages" id="advantagesList">
+                        <!-- JS 渲染 -->
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 需要注意的地方 -->
+            <section class="result-section result-section-alt">
+                <div class="container">
+                    <div class="section-head">
+                        <span class="section-eyebrow">需要留意</span>
+                        <h2 class="section-title">潜在盲区</h2>
+                    </div>
+                    <ul class="bullet-list bullet-list-cautions" id="cautionsList">
+                        <!-- JS 渲染 -->
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 适合的职业 -->
+            <section class="result-section">
+                <div class="container">
+                    <div class="section-head">
+                        <span class="section-eyebrow">职业方向</span>
+                        <h2 class="section-title">适合的职业</h2>
+                    </div>
+                    <div class="career-tags" id="careerTags">
+                        <!-- JS 渲染 -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- 建议 -->
+            <section class="result-section result-section-alt">
+                <div class="container">
+                    <div class="section-head">
+                        <span class="section-eyebrow">成长方向</span>
+                        <h2 class="section-title">发展建议</h2>
+                    </div>
+                    <ul class="bullet-list bullet-list-suggestions" id="suggestionsList">
+                        <!-- JS 渲染 -->
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 操作区 -->
+            <section class="result-actions">
+                <div class="container actions-inner">
+                    <a href="/survey" class="btn btn-primary btn-lg" id="retakeBtn">
+                        重新测评
+                    </a>
+                    <button type="button" class="btn btn-outline btn-lg" id="shareBtn" data-action="share">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+                        分享结果
+                    </button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div class="footer-brand">
+                <span class="logo-mark">4D</span>
+                <span class="logo-text">MCOM</span>
+            </div>
+            <p class="footer-desc">四维动机建构取向测评 · 探索你的认知偏好与人格类型</p>
+            <p class="footer-copy">© <span id="footerYear">2026</span> 4D-MCOM. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- 分享成功提示 -->
+    <div class="toast" id="shareToast" role="status" aria-live="polite">链接已复制到剪贴板</div>
+
+    <script src="js/result.js"></script>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="4D-MCOM 测评问卷 - 60道题探索你的人格类型">
+    <title>开始测评 · 4D-MCOM 四维动机建构取向测评</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <header class="survey-header">
+        <div class="container survey-header-inner">
+            <a href="/" class="logo">
+                <span class="logo-mark">4D</span>
+                <span class="logo-text">MCOM</span>
+            </a>
+            <div class="survey-progress-info">
+                <span class="progress-text">第 <span id="currentQuestion">1</span> / 60 题</span>
+            </div>
+            <a href="/" class="exit-link">退出</a>
+        </div>
+        <!-- 进度条 -->
+        <div class="progress-bar-wrap">
+            <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+        </div>
+    </header>
+
+    <main class="survey-main">
+        <div class="container survey-container">
+            <!-- 认证页（注册 / 登录） -->
+            <section class="survey-screen auth-screen active" id="authScreen" data-screen="auth">
+                <div class="screen-card auth-card">
+                    <!-- 注册表单 -->
+                    <form class="auth-form active" id="registerForm" novalidate>
+                        <div class="screen-emoji" aria-hidden="true">👋</div>
+                        <h2 class="screen-title">创建测评账号</h2>
+                        <p class="screen-desc">昵称即你的专属账号，注册后本机自动保持登录。同一账号多次测评仅保留最新一次结果。</p>
+
+                        <div class="form-group">
+                            <label class="form-label" for="regNickname">昵称</label>
+                            <input type="text" id="regNickname" class="form-input" placeholder="给自己起个昵称（1-20 个字符）" maxlength="20" autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="regAgeGroup">年龄段</label>
+                            <select id="regAgeGroup" class="form-input form-select">
+                                <option value="">请选择年龄段</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">性别</label>
+                            <div class="gender-options" id="regGender">
+                                <button type="button" class="gender-option" data-gender="男">男</button>
+                                <button type="button" class="gender-option" data-gender="女">女</button>
+                            </div>
+                        </div>
+
+                        <p class="form-error" id="registerError" hidden></p>
+                        <button type="submit" class="btn btn-primary btn-lg btn-block" id="registerBtn">注册并开始</button>
+                        <p class="auth-switch">已有账号？<a href="#" id="goLogin">输入昵称登录</a></p>
+                    </form>
+
+                    <!-- 登录表单 -->
+                    <form class="auth-form" id="loginForm" novalidate>
+                        <div class="screen-emoji" aria-hidden="true">🔑</div>
+                        <h2 class="screen-title">欢迎回来</h2>
+                        <p class="screen-desc">输入注册时使用的昵称即可登录，查看你的测评结果。</p>
+
+                        <div class="form-group">
+                            <label class="form-label" for="loginNickname">昵称</label>
+                            <input type="text" id="loginNickname" class="form-input" placeholder="请输入你的昵称" maxlength="20" autocomplete="off">
+                        </div>
+
+                        <p class="form-error" id="loginError" hidden></p>
+                        <button type="submit" class="btn btn-primary btn-lg btn-block" id="loginBtn">登录</button>
+                        <p class="auth-switch">还没有账号？<a href="#" id="goRegister">注册新账号</a></p>
+                    </form>
+                </div>
+            </section>
+
+            <!-- 欢迎页（已登录用户） -->
+            <section class="survey-screen welcome-screen" id="welcomeScreen" data-screen="welcome">
+                <div class="screen-card">
+                    <div class="screen-emoji" aria-hidden="true">✨</div>
+                    <h2 class="screen-title" id="welcomeTitle">你好</h2>
+                    <p class="screen-desc" id="welcomeMeta"></p>
+
+                    <div class="last-result-box" id="lastResultBox" hidden>
+                        <p class="last-result-label">你当前的测评结果</p>
+                        <p class="last-result-type" id="lastType">--</p>
+                        <a class="btn btn-ghost btn-block" id="viewLastResultBtn" href="#">查看我的结果</a>
+                    </div>
+
+                    <div class="screen-tips">
+                        <div class="tip-item">
+                            <span class="tip-num">1</span>
+                            <span class="tip-text">凭直觉作答，避免过度思考</span>
+                        </div>
+                        <div class="tip-item">
+                            <span class="tip-num">2</span>
+                            <span class="tip-text">选择最贴近日常状态的那一项</span>
+                        </div>
+                        <div class="tip-item">
+                            <span class="tip-num">3</span>
+                            <span class="tip-text">共 60 题，约需 10 分钟</span>
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn btn-primary btn-lg btn-block" id="welcomeStartBtn">开始答题</button>
+                    <button type="button" class="btn btn-ghost btn-block" id="logoutBtn">退出登录</button>
+                </div>
+            </section>
+
+            <!-- 答题页 -->
+            <section class="survey-screen question-screen" id="questionScreen" data-screen="question">
+                <div class="question-card">
+                    <div class="question-meta">
+                        <span class="question-index" id="questionIndex">第 1 题 / 共 60 题</span>
+                    </div>
+                    <h2 class="question-text" id="questionText">题目内容加载中...</h2>
+
+                    <div class="answer-options" id="answerOptions" role="group" aria-label="答案选项">
+                        <button type="button" class="answer-option" data-value="1" data-score="1">
+                            <span class="option-score">1</span>
+                            <span class="option-text">非常不同意</span>
+                            <span class="option-check" aria-hidden="true">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            </span>
+                        </button>
+                        <button type="button" class="answer-option" data-value="2" data-score="2">
+                            <span class="option-score">2</span>
+                            <span class="option-text">比较不同意</span>
+                            <span class="option-check" aria-hidden="true">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            </span>
+                        </button>
+                        <button type="button" class="answer-option" data-value="3" data-score="3">
+                            <span class="option-score">3</span>
+                            <span class="option-text">不确定</span>
+                            <span class="option-check" aria-hidden="true">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            </span>
+                        </button>
+                        <button type="button" class="answer-option" data-value="4" data-score="4">
+                            <span class="option-score">4</span>
+                            <span class="option-text">比较同意</span>
+                            <span class="option-check" aria-hidden="true">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            </span>
+                        </button>
+                        <button type="button" class="answer-option" data-value="5" data-score="5">
+                            <span class="option-score">5</span>
+                            <span class="option-text">非常同意</span>
+                            <span class="option-check" aria-hidden="true">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            </span>
+                        </button>
+                    </div>
+
+                    <div class="answer-scale-labels">
+                        <span>不同意</span>
+                        <span>同意</span>
+                    </div>
+
+                    <div class="question-nav">
+                        <button type="button" class="btn btn-ghost" id="prevQuestionBtn" disabled>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                            上一题
+                        </button>
+                        <button type="button" class="btn btn-primary" id="nextQuestionBtn" disabled>
+                            下一题
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 完成页 -->
+            <section class="survey-screen complete-screen" id="completeScreen" data-screen="complete">
+                <div class="screen-card">
+                    <div class="complete-icon" aria-hidden="true">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    </div>
+                    <h2 class="screen-title">答题完成！</h2>
+                    <p class="screen-desc">你已经完成了全部 60 道题目，点击下方按钮查看你的专属类型报告。</p>
+                    <div class="answer-summary" id="answerSummary">
+                        <div class="summary-item"><span class="summary-label">已回答</span><span class="summary-value" id="answeredCount">60</span></div>
+                        <div class="summary-item"><span class="summary-label">用时</span><span class="summary-value" id="timeUsed">--</span></div>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-lg btn-block" id="submitSurveyBtn">
+                        提交并查看结果
+                    </button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- 重新测评确认弹窗 -->
+    <div class="confirm-modal" id="retakeConfirm" hidden>
+        <div class="confirm-mask"></div>
+        <div class="confirm-dialog" role="dialog" aria-modal="true" aria-labelledby="retakeTitle">
+            <h3 class="confirm-title" id="retakeTitle">确认重新测评？</h3>
+            <p class="confirm-text">重新作答将<strong>覆盖你之前的测评记录</strong>，原结果将从统计数据中删除，此操作不可撤销。</p>
+            <div class="confirm-actions">
+                <button type="button" class="btn btn-ghost" id="retakeCancel">取消</button>
+                <button type="button" class="btn btn-primary" id="retakeConfirmBtn">确认重测</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/survey.js"></script>
+</body>
+</html>
