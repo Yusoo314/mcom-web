@@ -53,6 +53,13 @@
     });
     var target = document.querySelector('[data-screen="' + screenName + '"]');
     if (target) target.classList.add('active');
+
+    // 顶部题号与进度条仅在答题页/完成页显示
+    var showProgress = screenName === 'question' || screenName === 'complete';
+    var progressInfo = $('surveyProgressInfo');
+    var progressBarWrap = $('progressBarWrap');
+    if (progressInfo) progressInfo.hidden = !showProgress;
+    if (progressBarWrap) progressBarWrap.hidden = !showProgress;
   }
 
   /**
@@ -247,9 +254,6 @@
     $('currentQuestion').textContent = currentIndex + 1;
     $('progressBar').style.width = (currentIndex / TOTAL_QUESTIONS * 100) + '%';
 
-    if ($('questionIndex')) {
-      $('questionIndex').textContent = '第 ' + (currentIndex + 1)  + ' 题 / 共 ' + TOTAL_QUESTIONS + ' 题';
-    }
     $('questionText').textContent = q.text;
 
     document.querySelectorAll('.answer-option').forEach(function (btn) {

@@ -15,13 +15,13 @@
                 <span class="logo-mark">4D</span>
                 <span class="logo-text">MCOM</span>
             </a>
-            <div class="survey-progress-info">
+            <div class="survey-progress-info" id="surveyProgressInfo" hidden>
                 <span class="progress-text">第 <span id="currentQuestion">1</span> / 60 题</span>
             </div>
             <a href="/" class="exit-link">退出</a>
         </div>
         <!-- 进度条 -->
-        <div class="progress-bar-wrap">
+        <div class="progress-bar-wrap" id="progressBarWrap" hidden>
             <div class="progress-bar" id="progressBar" style="width: 0%"></div>
         </div>
     </header>
@@ -114,9 +114,6 @@
             <!-- 答题页 -->
             <section class="survey-screen question-screen" id="questionScreen" data-screen="question">
                 <div class="question-card">
-                    <div class="question-meta">
-                        <span class="question-index" id="questionIndex">第 1 题 / 共 60 题</span>
-                    </div>
                     <h2 class="question-text" id="questionText">题目内容加载中...</h2>
 
                     <div class="answer-options" id="answerOptions" role="group" aria-label="答案选项">
@@ -155,11 +152,6 @@
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                             </span>
                         </button>
-                    </div>
-
-                    <div class="answer-scale-labels">
-                        <span>不同意</span>
-                        <span>同意</span>
                     </div>
 
                     <div class="question-nav">

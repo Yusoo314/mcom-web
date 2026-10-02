@@ -985,13 +985,6 @@ svg { display: block; }
     gap: var(--space-lg);
 }
 
-.question-meta {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: var(--space-md);
-}
-
 .question-dimension-tag {
     display: inline-flex;
     align-items: center;
@@ -1001,12 +994,6 @@ svg { display: block; }
     color: var(--color-primary-dark);
     background: var(--color-primary-soft);
     border-radius: var(--radius-full);
-}
-
-.question-index {
-    font-size: var(--font-size-sm);
-    color: var(--color-text-light);
-    font-weight: 500;
 }
 
 .question-text {
@@ -1102,17 +1089,6 @@ svg { display: block; }
     border: 1.5px solid var(--color-border-strong);
     transform: scale(0.85);
     transition: all var(--transition-bounce);
-}
-
-/* 量表两端标签 */
-.answer-scale-labels {
-    display: flex;
-    justify-content: space-between;
-    padding: 0 var(--space-sm);
-    font-size: var(--font-size-xs);
-    color: var(--color-text-light);
-    font-weight: 500;
-    margin-top: calc(-1 * var(--space-sm));
 }
 
 /* 题目导航按钮 */
